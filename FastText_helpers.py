@@ -47,8 +47,16 @@ def print_related_str(words: List[Word], text: str) -> str:
         ]
     return ', '.join(sorted_words[:7])
     
+#def find_word(words: List[Word], text: str) -> Word:
+#    return next(w for w in words if text == w.text)
+#### modified 5-25-18 by JTN
 def find_word(words: List[Word], text: str) -> Word:
-    return next(w for w in words if text == w.text)
+    a = next((w for w in words if text == w.text),"exhausted")
+    if a == "exhausted":
+        print(text + " was not found in the library. Please try another word")
+        return None 
+    else:
+        return a
 
 def closest_analogies(
     left2: str, left1: str, right2: str, words: List[Word]
